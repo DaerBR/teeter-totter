@@ -80,7 +80,8 @@ class ItemsContainer extends Component {
                           className={`item item-${flyingItem.form} color-${flyingItem.color}`}
                           weight={flyingItem.weight}
                           bottom={flyingItem.bottom}
-                          offset={flyingItem.offset}/>
+                          offset={flyingItem.offset}
+                    />
                     }
                 </div>
                 <Seesaw/>
