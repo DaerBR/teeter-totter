@@ -37,10 +37,10 @@ class Platform extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        rightItems: state.game.rightItems,
-        leftItems: state.game.leftItems,
-        weightLeft: state.game.weightLeft,
-        weightRight: state.game.weightRight
+        rightItems: state.gameState.rightItems,
+        leftItems: state.gameState.leftItems,
+        weightLeft: state.gameState.weightLeft,
+        weightRight: state.gameState.weightRight
     }
 }
 export default connect(mapStateToProps)(Platform);

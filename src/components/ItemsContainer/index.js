@@ -7,12 +7,16 @@ import Item from '../Item';
 import './style.css';
 
 class ItemsContainer extends Component {
+    state = { timeOut: null }
+
     componentDidUpdate() {
         if (this.props.isGameOn && !this.props.isGameOver) {
             this.gameCycle();
         }
     }
-
+    shouldComponentUpdate(nextProps, nextState) {
+        return !(this.state.timeOut && (nextState.timeOut !== this.state.timeOut));
+    }
     gameCycle() {
         const { leftItems, rightItems, weightLeft, weightRight, flyingItem } = this.props;
 
@@ -27,6 +31,7 @@ class ItemsContainer extends Component {
         }
 
         if (flyingItem) {
+            let dropTimeout;
             if (flyingItem.bottom === 0) {
                 if (rightItems.length !== leftItems.length) {
                     const newLeft = this.props.flyingItem;
@@ -36,10 +41,11 @@ class ItemsContainer extends Component {
                 }
                 this.props.clearFlyingItem();
             } else {
-
-                setTimeout(() => {
+                this.state.timeOut && clearTimeout(this.state.timeOut);
+                dropTimeout = setTimeout(() => {
                     !this.props.isPaused && this.props.flyingItem && this.props.gravity();
                 }, 1000);
+                this.setState({timeOut: dropTimeout});
             }
 
         }
@@ -63,17 +69,18 @@ class ItemsContainer extends Component {
 
 
     render() {
+        const { isGameOver, isPaused, flyingItem } = this.props;
         return (
             <div className="items-container">
-                {(this.props.isGameOver && <div className="game-over-message">Alas, the game is over!</div>)}
-                {(this.props.isPaused && <div className="game-paused-message">Game paused...</div>)}
+                {(isGameOver && <div className="game-over-message">Alas, the game is over!</div>)}
+                {(isPaused && <div className="game-paused-message">Game paused...</div>)}
                 <div className="leftSide">
-                    { this.props.flyingItem &&
-                            <Item type="fly"
-                                  className={`item item-${this.props.flyingItem.form} color-${this.props.flyingItem.color}`}
-                                  weight={this.props.flyingItem.weight}
-                                  bottom={this.props.flyingItem.bottom}
-                                  offset={this.props.flyingItem.offset}/>
+                    { flyingItem &&
+                    <Item type="fly"
+                          className={`item item-${flyingItem.form} color-${flyingItem.color}`}
+                          weight={flyingItem.weight}
+                          bottom={flyingItem.bottom}
+                          offset={flyingItem.offset}/>
                     }
                 </div>
                 <Seesaw/>
@@ -83,16 +90,16 @@ class ItemsContainer extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        weightLeft: state.game.weightLeft,
-        weightRight: state.game.weightRight,
-        leftItems: state.game.leftItems,
-        rightItems: state.game.rightItems,
-        flyingItem: state.game.flyingItem,
-        bending: state.game.bending,
-        isGameOn: state.game.isGameOn,
-        isGameOver: state.game.isGameOver,
-        isPaused: state.game.isPaused,
-        dropInProgress: state.game.dropInProgress
+        weightLeft: state.gameState.weightLeft,
+        weightRight: state.gameState.weightRight,
+        leftItems: state.gameState.leftItems,
+        rightItems: state.gameState.rightItems,
+        flyingItem: state.gameState.flyingItem,
+        bending: state.gameState.bending,
+        isGameOn: state.gameState.isGameOn,
+        isGameOver: state.gameState.isGameOver,
+        isPaused: state.gameState.isPaused,
+        dropInProgress: state.gameState.dropInProgress
     }
 }
 

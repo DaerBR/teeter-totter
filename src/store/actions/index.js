@@ -27,15 +27,15 @@ export const resetGame = () => {
         type: RESET_GAME
     }
 }
-// I still have much doubts about this one
+// I still have some doubts about this one
 export const getModifiedSideWeight = (items, side) => {
     let modifiedWeight = 0;
 
     items.forEach((item) => {
         if (side === 'right') {
-            modifiedWeight += (item.weight * (item.offset - 5));
+            modifiedWeight += (item.weight - (item.offset + 3));
         } else {
-            modifiedWeight +=  (item.weight * (5 - item.offset));
+            modifiedWeight +=  (item.weight * (item.offset - 3));
         }
     });
     return modifiedWeight;
@@ -56,9 +56,9 @@ export const updateGameStats = (leftItems, rightItems, weightLeft, weightRight) 
             type: IS_GAME_OVER,
             payload: true
         }
-        // Same here - the bending model is far from good
-    } else if ((rightItems.length === leftItems.length) && Math.abs(bending) === 30 && (Math.abs(weightRight) > 25)) {
-        console.log('Bended too much - ', bending);
+        // Same here - the whole bending model is far from being good
+    } else if ((rightItems.length === leftItems.length) && Math.abs(bending) === 30 && (weightRight + weightLeft) > 35) {
+        console.log('Bended too much');
         return {
             type: IS_GAME_OVER,
             payload: true

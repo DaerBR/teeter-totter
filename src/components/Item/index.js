@@ -19,20 +19,17 @@ class Item extends Component {
         }
     }
 
-
     keyDownHandler = (e) => {
-            switch (e.keyCode) {
-                case 37:
-                    this.props.offset > 0 && this.props.moveLeft()
-                    break;
-                case 39:
-                    this.props.offset > 5 && this.props.moveLeft()
-                    this.props.moveRight()
-                    break;
-                default:
-                    return true
-            }
-
+        switch (e.keyCode) {
+            case 37:
+                this.props.offset > 0 && this.props.moveLeft();
+                break;
+            case 39:
+                this.props.offset < 6 && this.props.moveRight();
+                break;
+            default:
+                return true
+        }
     }
     render() {
         const { weight, className, offset, bottom } = this.props;
@@ -52,7 +49,7 @@ class Item extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        flyingItem: state.game.flyingItem,
+        flyingItem: state.gameState.flyingItem,
     }
 }
 

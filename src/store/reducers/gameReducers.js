@@ -17,7 +17,6 @@ const initialState = {
     isGameOn: false,
     weightLeft: 0,
     weightRight: 0,
-    weightDifference: 0,
     bending: 0,
     leftItems: [],
     rightItems: [],
@@ -67,7 +66,6 @@ export const gameReudcer = (state = initialState, action) => {
                     }
                 }
                 case 'fly': {
-                    console.log('New fly is ', action.payload.stats)
                     return {
                         ...state,
                         flyingItem: action.payload.stats
