@@ -1,0 +1,28 @@
+.items-container {
+    display: inline-flex;
+    height: 600px;
+    margin: 100px auto 0;
+    width: 1000px;
+    max-height: 750px;
+    position: relative;
+
+}
+.leftSide,
+.rightSide {
+    width: 50%;
+    position: relative;
+}
+.game-over-message,
+.game-paused-message {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 40px;
+    color: #b12222;
+}
+.game-paused-message {
+    color: #2d498d;
+}

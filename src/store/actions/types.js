@@ -1,0 +1,10 @@
+export const START_GAME = 'START_GAME';
+export const PAUSE_GAME = 'PAUSE_GAME';
+export const RESET_GAME = 'RESET_GAME';
+export const IS_GAME_OVER = 'IS_GAME_OVER';
+export const CREATE_ITEM = 'CREATE_ITEM';
+export const UPDATE_GAME_STATS = 'UPDATE_GAME_STATS';
+export const CLEAR_FLYING_ITEMS = 'CLEAR_FLYING_ITEMS';
+export const GRAVITY = 'GRAVITY';
+export const MOVE_LEFT = 'MOVE_LEFT';
+export const MOVE_RIGHT = 'MOVE_RIGHT';

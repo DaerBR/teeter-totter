@@ -1,0 +1,29 @@
+.item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    min-width: 20px;
+    min-height: 20px;
+    font-size: 12px;
+    border: 1px solid #000;
+    outline: none;
+    z-index: 2;
+}
+.color-orange {
+    background: #dba446;
+}
+.color-blue {
+    background: #8dccf3;
+}
+.color-green {
+    background: #7bbe7b;
+}
+.item-circle {
+    border-radius: 50%;
+}
+.item-triangle {
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    box-sizing: border-box;
+}

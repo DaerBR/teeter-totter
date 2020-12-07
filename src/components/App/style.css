@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    font-family: "Helvetica";
+    padding: 0;
+    background: aliceblue;
+}
+
+.game-container {
+    text-align: center;
+}
